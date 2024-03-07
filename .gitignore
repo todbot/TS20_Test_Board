@@ -10,7 +10,7 @@
 *-backups
 *.kicad_prl
 *.sch-bak
-*~
+*~*
 _autosave-*
 *.tmp
 *-save.pro
@@ -29,3 +29,4 @@ fp-info-cache
 *.csv
 
 *#auto_saved_files#
+production
