@@ -8,7 +8,7 @@
 #define Sensitivity_PWM1 0x00   //ch2,ch1
 #define Sensitivity_PWM2 0x01   //ch4,ch3
 #define Sensitivity_PWM3 0x02   //ch6,ch5
-#define Sensitivity_PWM4 0x03   //ch21,ch7
+#define Sensitivity_PWM4 0x03   //-,ch7
 #define Sensitivity_PWM5 0x04   //ch9,ch8
 #define Sensitivity_PWM6 0x05   //ch11,ch10
 #define Sensitivity_PWM7 0x06   //ch13,ch12
@@ -62,16 +62,15 @@
 #define TS20_ADDR_VDD 0x7A       //0xF4>>1 //ADD Pin = VDD
 #define TS20_ADDR_DEFAULT TS20_ADDR_GND  // choose how you have board configured
 
-//#define PADSENS 0b0101  // 0x55
-#define PADSENS 0b1111    // 0x00
-//#define PADSENS 0b0000  // 0x00
-#define PADSENS2 ((PADSENS<<4)|PADSENS)
 
 class TS20 {
 public:
   TS20();
   bool begin(uint8_t i2caddr = TS20_ADDR_GND, TwoWire *theWire = &Wire);
+  bool reconfigure(uint8_t* config_info, int config_info_len);
   uint32_t getTouches();
+  bool readSensitivity();
+  bool readRdCh();
 
 private:
   TwoWire *_wire;
